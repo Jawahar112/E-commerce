@@ -1,0 +1,11 @@
+const express=require('express')
+const Router=express.Router()
+const multer_middleware=require('../Middlewares/multermiddleware')
+const AdminValidation=require('../Middlewares/Validations/AdminValidation')
+const AdminController=require('../Controllers/admincontroller')
+Router.route('/login').post(AdminValidation.ValidateLogin,AdminController.Login)
+Router.route('/addproduct').post(AdminController.addproduct)
+Router.route('/Edit/product/image/:Productid').put(multer_middleware.product_picture,AdminController.EditProductImage)
+Router.route('/View/Order/:userID').get(AdminController.viewOrder)
+Router.route('/Order/status').put(AdminController.OrderStatus)
+module.exports=Router
